@@ -9,7 +9,7 @@ Currently this script supports the Project Sloth Livery V2 pack & all CarLabs ca
 # How does it work?
 
 * Do /callsign NUMBERS
-* Do /setcallsign OR use the qb-target integration found below
+* Do /setcallsign in the vehicle OR use the qb-target integration found below outside the car.
 * Your callsign will be on the roof of your car. Only numbers are supported, not letters.
 ### qb-target Support
 * Add to your qb-target > init.lua

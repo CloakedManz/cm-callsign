@@ -11,7 +11,7 @@ RegisterCommand('setcallsign', function(source, args, rawCommand)
             else
                 vehicle = GetVehiclePedIsIn(playerPed, false)
             end
-local callsign = PlayerData.metadata['callsign'] or 'NO CALLSIGN'
+
             if #callsign == 3 then
                 local callsign1 = tonumber(string.sub(callsign, 1, 1))
                 local callsign2 = tonumber(string.sub(callsign, 2, 2))

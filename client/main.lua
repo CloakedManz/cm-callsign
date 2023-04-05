@@ -1,5 +1,4 @@
 
-if Config.ProjectSlothCars == true then
 RegisterCommand('setcallsign', function(source, args, rawCommand)
 local src = source
 local Vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
@@ -14,7 +13,7 @@ SetVehicleMod(Vehicle, 29, Callsign2, false)
 SetVehicleMod(Vehicle, 30, Callsign3, false)
 
 end)
-end
+
 
 
 --[[ W.I.P ------------------------

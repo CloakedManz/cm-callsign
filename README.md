@@ -15,3 +15,7 @@ Do /setcallsign DIGIT1 DIGIT2 DIGIT3 and tada! Your callsign will be on the roof
 Use /setcallsigncolor COLOR(Lowercase Only) to change the callsign to one of six predefined colors. Only black, white, red, yellow, pink and blue are supported.
 
 If you enter an invalid color, you have the option of chat vs QBNotify notifications telling you the pre-defined colors. You can change this in the config.lua file.
+
+
+PS-Liveries - https://github.com/Project-Sloth/ps-liveries/tree/main
+CarLabs - https://car-labs.tebex.io/

@@ -40,3 +40,6 @@ If you enter an invalid color, you have the option of chat vs QBNotify notificat
 PS-Liveries - https://github.com/Project-Sloth/ps-liveries
 
 CarLabs - https://car-labs.tebex.io/
+
+### Credits
+@MonkeyWhisper - Code Refactor and Feature Additions

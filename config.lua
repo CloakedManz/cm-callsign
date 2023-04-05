@@ -1,6 +1,4 @@
 Config = {}
 
-Config.ProjectSlothCars = false
-Config.CarLabs = true
-
-Config.QBCore = false
+Config.ProjectSlothCars = true
+Config.CarLabs = false

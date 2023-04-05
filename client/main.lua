@@ -1,140 +1,5 @@
-if Config.QBCore == true then
-local QBCore = exports['qb-core']:GetCoreObject()
-end
-
 
 if Config.ProjectSlothCars == true then
-
-RegisterCommand('setcallsign', function(source, args, rawCommand)
-    
-    TriggerEvent('chat:addSuggestion', '/setcallsign', 'Change The Callsign Color On Your Emergency Vehicle', {
-        { name="digit1", help="Callsign Digit 1" },
-        { name="digit2", help="Callsign Digit 2" },
-        { name="digit3", help="Callsign Digit 3" },
-    })
-
-local src = source
-local Vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
-
-local Callsign1 = tonumber(args[1])
-local Callsign2 = tonumber(args[2])
-local Callsign3 = tonumber(args[3])
-
-SetVehicleModKit(Vehicle, 0)
-SetVehicleMod(Vehicle, 28, Callsign1, false)
-SetVehicleMod(Vehicle, 29, Callsign2, false)
-SetVehicleMod(Vehicle, 30, Callsign3, false)
-
-    end)
-end
-
-if Config.CarLabs == true then
-
-    if Config.QBCore ==true then
-
-        RegisterCommand('setcallsign', function(source, args, rawCommand)
-
-            TriggerEvent('chat:addSuggestion', '/setcallsign', 'Change The Callsign Color On Your Emergency Vehicle', {})
-
-        local src = source
-        local Vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
-
-        local dialog = exports['qb-input']:ShowInput({
-            header = "Change Emergency Vehicle Callsign",
-            submitText = "Change Callsign",
-            inputs = {
-                {
-                    text = "Callsign Digit 1", 
-                    name = "callsign1", 
-                    type = "number", 
-                    isRequired = true,
-                },
-                {
-                    text = "Callsign Digit 2", 
-                    name = "callsign2", 
-                    type = "number", 
-                    isRequired = true,
-                },
-                {
-                    text = "Callsign Digit 3", 
-                    name = "callsign3", 
-                    type = "number", 
-                    isRequired = true,
-                },
-            },
-        })
-
-        SetVehicleModKit(Vehicle, 0)
-        SetVehicleMod(Vehicle, 42, dialog.callsign1, false)
-        SetVehicleMod(Vehicle, 44, dialog.callsign2, false)
-        SetVehicleMod(Vehicle, 45, dialog.callsign3, false)
-    end)
-
-    RegisterCommand('setcallsigncolor', function(source, args, rawCommand)
-       
-        TriggerEvent('chat:addSuggestion', '/setcallsigncolor', 'Change The Callsign Color On Your Emergency Vehicle', {})
-
-        local src = source
-        local Vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
-
-        local dialog = exports['qb-input']:ShowInput({
-            header = "Change Emergency Vehicle Color",
-            submitText = "Change Callsign Color",
-            inputs = {
-                {
-                    text = "Callsign Color", 
-                    name = "callsigncolor", 
-                    type = "radio",
-                    options = {
-                        { value = "black", text = "Black" },
-                        { value = "white", text = "White" },
-                        { value = "red", text = "Red" }, 
-                        { value = "yellow", text = "Yellow" }, 
-                        { value = "blue", text = "Blue" }, 
-                        { value = "pink", text = "Pink" }, 
-                    },
-
-                },
-            },
-        })
-
-    end)
-
-    if dialog.callsigncolor == "black" then
-
-        local Color = 0
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif dialog.callsigncolor == "white"then
-
-        local Color = 111
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif dialog.callsigncolor == "red" then
-            
-        local Color = 27
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif dialog.callsigncolor == "yellow" then
-
-        local Color = 88
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif dialog.callsigncolor == "blue" then
-
-        local Color = 64
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif dialog.callsigncolor == "pink" then
-
-        local Color = 136
-        SetVehicleDashboardColour(Vehicle, Color)
-        
-        else
-        QBCore.Functions.Notify('Invalid Color! Only black, white, red, yellow, pink and blue are supported.', 'error', 7000)
-    end
-
-    else
 
     RegisterCommand('setcallsign', function(source, args, rawCommand)
         
@@ -143,69 +8,89 @@ if Config.CarLabs == true then
             { name="digit2", help="Callsign Digit 2" },
             { name="digit3", help="Callsign Digit 3" },
         })
-      
-        local src = source
-        local Vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
-        
-        local Callsign1 = tonumber(args[1])
-        local Callsign2 = tonumber(args[2])
-        local Callsign3 = tonumber(args[3])
-        
-        SetVehicleModKit(Vehicle, 0)
-        SetVehicleMod(Vehicle, 42, Callsign1, false)
-        SetVehicleMod(Vehicle, 44, Callsign2, false)
-        SetVehicleMod(Vehicle, 45, Callsign3, false)
-        
-    end)
-
-    RegisterCommand('setcallsigncolor', function(source, args, rawCommand)
-       
-        TriggerEvent('chat:addSuggestion', '/setcallsigncolor', 'Change The Callsign Color On Your Emergency Vehicle', {
-            { name="color", help="Callsign Color, must be black, white, red, yellow, blue, or pink!" }
-        })
-
-        local src = source
-        local Vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
-        
-        if tostring(args[1]) == "black" then
-
-        local Color = 0
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif tostring(args[1]) == "white"then
-
-        local Color = 111
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif tostring(args[1]) == "red" then
+    
+    local Vehicle = GetVehiclePedIsIn(GetPlayerPed(-1), false)
+    
+    local Callsign1 = tonumber(args[1])
+    local Callsign2 = tonumber(args[2])
+    local Callsign3 = tonumber(args[3])
+    
+    SetVehicleModKit(Vehicle, 0)
+    SetVehicleMod(Vehicle, 28, Callsign1, false)
+    SetVehicleMod(Vehicle, 29, Callsign2, false)
+    SetVehicleMod(Vehicle, 30, Callsign3, false)
+    
+        end)
+    end
+    
+    if Config.CarLabs == true then
+    
+        RegisterCommand('setcallsign', function(source, args, rawCommand)
             
-        local Color = 27
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif tostring(args[1]) == "yellow" then
-
-        local Color = 88
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif tostring(args[1]) == "blue" then
-
-        local Color = 64
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        elseif tostring(args[1]) == "pink" then
-
-        local Color = 136
-        SetVehicleDashboardColour(Vehicle, Color)
-
-        else
-                TriggerEvent('chat:addMessage', {
-                color = { 255, 0, 0},
-                multiline = true,
-                args = {"CM-Callsign", "Invalid Color! Only black, white, red, yellow, pink and blue are supported."}
-                })
-        end
-
-    end)
-end
-
-end
+            TriggerEvent('chat:addSuggestion', '/setcallsign', 'Change The Callsign On Your Emergency Vehicle', {
+                { name="digit1", help="Callsign Digit 1" },
+                { name="digit2", help="Callsign Digit 2" },
+                { name="digit3", help="Callsign Digit 3" },
+            })
+          
+            local Vehicle = GetVehiclePedIsIn(GetPlayerPed(-1), false)
+            
+            local Callsign1 = tonumber(args[1])
+            local Callsign2 = tonumber(args[2])
+            local Callsign3 = tonumber(args[3])
+            
+            SetVehicleModKit(Vehicle, 0)
+            SetVehicleMod(Vehicle, 42, Callsign1, false)
+            SetVehicleMod(Vehicle, 44, Callsign2, false)
+            SetVehicleMod(Vehicle, 45, Callsign3, false)
+            
+        end)
+    
+        RegisterCommand('setcallsigncolor', function(source, args, rawCommand)
+           
+            TriggerEvent('chat:addSuggestion', '/setcallsigncolor', 'Change The Callsign Color On Your Emergency Vehicle', {
+                { name="color", help="Only black, white, red, yellow, pink and blue are supported." }
+            })
+    
+            local Vehicle = GetVehiclePedIsIn(GetPlayerPed(-1), false)
+            
+            if tostring(args[1]) == "black" then
+    
+            local Color = 0
+            SetVehicleDashboardColour(Vehicle, Color)
+    
+            elseif tostring(args[1]) == "white"then
+    
+            local Color = 111
+            SetVehicleDashboardColour(Vehicle, Color)
+    
+            elseif tostring(args[1]) == "red" then
+                
+            local Color = 27
+            SetVehicleDashboardColour(Vehicle, Color)
+    
+            elseif tostring(args[1]) == "yellow" then
+    
+            local Color = 88
+            SetVehicleDashboardColour(Vehicle, Color)
+    
+            elseif tostring(args[1]) == "blue" then
+    
+            local Color = 64
+            SetVehicleDashboardColour(Vehicle, Color)
+    
+            elseif tostring(args[1]) == "pink" then
+    
+            local Color = 136
+            SetVehicleDashboardColour(Vehicle, Color)
+    
+            else
+                    TriggerEvent('chat:addMessage', {
+                    color = { 255, 0, 0},
+                    multiline = true,
+                    args = {"CM-Callsign", "Invalid Color! Only black, white, red, yellow, pink and blue are supported."}
+                    })
+            end
+    
+        end)
+    end

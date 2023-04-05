@@ -1,1 +1,3 @@
+Config = {}
+
 Config.ProjectSlothCars = true

@@ -4,7 +4,7 @@ RegisterCommand('setcallsign', function(source, args, rawCommand)
     QBCore.Functions.GetPlayerData(function(PlayerData)
         if PlayerData.job.name == "police" then
             local playerPed = PlayerPedId()
-            local vehicle = QBCore.Functions.GetClosestVehicle()
+            local vehicle
 
             local callsign = PlayerData.metadata['callsign'] or 'NO CALLSIGN'
 

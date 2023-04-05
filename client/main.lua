@@ -1,3 +1,7 @@
+if Config.QBCore == true then
+local QBCore = exports['qb-core']:GetCoreObject()
+end
+
 
 if Config.ProjectSlothCars == true then
 
@@ -27,7 +31,11 @@ end
 if Config.CarLabs == true then
 
     if Config.QBCore ==true then
+
         RegisterCommand('setcallsign', function(source, args, rawCommand)
+
+            TriggerEvent('chat:addSuggestion', '/setcallsign', 'Change The Callsign Color On Your Emergency Vehicle', {})
+
         local src = source
         local Vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
 
@@ -61,6 +69,70 @@ if Config.CarLabs == true then
         SetVehicleMod(Vehicle, 44, dialog.callsign2, false)
         SetVehicleMod(Vehicle, 45, dialog.callsign3, false)
     end)
+
+    RegisterCommand('setcallsigncolor', function(source, args, rawCommand)
+       
+        TriggerEvent('chat:addSuggestion', '/setcallsigncolor', 'Change The Callsign Color On Your Emergency Vehicle', {})
+
+        local src = source
+        local Vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
+
+        local dialog = exports['qb-input']:ShowInput({
+            header = "Change Emergency Vehicle Color",
+            submitText = "Change Callsign Color",
+            inputs = {
+                {
+                    text = "Callsign Color", 
+                    name = "callsigncolor", 
+                    type = "radio",
+                    options = {
+                        { value = "black", text = "Black" },
+                        { value = "white", text = "White" },
+                        { value = "red", text = "Red" }, 
+                        { value = "yellow", text = "Yellow" }, 
+                        { value = "blue", text = "Blue" }, 
+                        { value = "pink", text = "Pink" }, 
+                    },
+
+                },
+            },
+        })
+
+    end)
+
+    if dialog.callsigncolor == "black" then
+
+        local Color = 0
+        SetVehicleDashboardColour(Vehicle, Color)
+
+        elseif dialog.callsigncolor == "white"then
+
+        local Color = 111
+        SetVehicleDashboardColour(Vehicle, Color)
+
+        elseif dialog.callsigncolor == "red" then
+            
+        local Color = 27
+        SetVehicleDashboardColour(Vehicle, Color)
+
+        elseif dialog.callsigncolor == "yellow" then
+
+        local Color = 88
+        SetVehicleDashboardColour(Vehicle, Color)
+
+        elseif dialog.callsigncolor == "blue" then
+
+        local Color = 64
+        SetVehicleDashboardColour(Vehicle, Color)
+
+        elseif dialog.callsigncolor == "pink" then
+
+        local Color = 136
+        SetVehicleDashboardColour(Vehicle, Color)
+        
+        else
+        QBCore.Functions.Notify('Invalid Color! Only black, white, red, yellow, pink and blue are supported.', 'error', 7000)
+    end
 
     else
 
@@ -126,18 +198,11 @@ if Config.CarLabs == true then
         SetVehicleDashboardColour(Vehicle, Color)
 
         else
-
-            if Config.QBCore == true then
-                local QBCore = exports['qb-core']:GetCoreObject()
-                QBCore.Functions.Notify('Invalid Color! Only black, white, red, yellow, pink and blue are supported.', 'error', 7000)
-            else
                 TriggerEvent('chat:addMessage', {
                 color = { 255, 0, 0},
                 multiline = true,
                 args = {"CM-Callsign", "Invalid Color! Only black, white, red, yellow, pink and blue are supported."}
                 })
-            end
-
         end
 
     end)

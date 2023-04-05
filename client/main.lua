@@ -70,7 +70,7 @@ if Config.ProjectSlothCars == true then
             SetVehicleDashboardColour(Vehicle, Color)
     
             elseif tostring(args[1]) == "yellow" then
-    
+     
             local Color = 88
             SetVehicleDashboardColour(Vehicle, Color)
     
@@ -85,11 +85,17 @@ if Config.ProjectSlothCars == true then
             SetVehicleDashboardColour(Vehicle, Color)
     
             else
+                if Config.QBNotify == true then
+                    local QBCore = exports['qb-core']:GetCoreObject()
+                    QBCore.Functions.Notify('CM-Callsign: Invalid Color! Only black, white, red, yellow, pink and blue are supported.', 'error', 7000)
+                else
+
                     TriggerEvent('chat:addMessage', {
                     color = { 255, 0, 0},
                     multiline = true,
                     args = {"CM-Callsign", "Invalid Color! Only black, white, red, yellow, pink and blue are supported."}
                     })
+                end
             end
     
         end)

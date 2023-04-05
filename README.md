@@ -42,4 +42,4 @@ PS-Liveries - https://github.com/Project-Sloth/ps-liveries
 CarLabs - https://car-labs.tebex.io/
 
 ### Credits
-@MonkeyWhisper - Code Refactor and Feature Additions
+@MonkeyWhisper (https://github.com/MonkeyWhisper) - Code Refactor and Feature Additions

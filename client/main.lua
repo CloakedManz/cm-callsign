@@ -3,7 +3,7 @@ if Config.ProjectSlothCars == true then
 
     RegisterCommand('setcallsign', function(source, args, rawCommand)
         
-        TriggerEvent('chat:addSuggestion', '/setcallsign', 'Change The Callsign Color On Your Emergency Vehicle', {
+        TriggerEvent('chat:addSuggestion', '/setcallsign', 'Change The Callsign On Your Emergency Vehicle', {
             { name="digit1", help="Callsign Digit 1" },
             { name="digit2", help="Callsign Digit 2" },
             { name="digit3", help="Callsign Digit 3" },

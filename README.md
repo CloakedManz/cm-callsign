@@ -8,8 +8,9 @@ Currently this script supports the Project Sloth Livery V2 pack & all CarLabs ca
 
 # How does it work?
 
-* Do /setcallsign DIGIT1 DIGIT2 DIGIT3 and tada! 
-* Your callsign will be on the roof of your car. Make sure to add spaces between each number or it WILL NOT work. Only numbers are supported, not letters.
+* Do /callsign NUMBERS
+* Do /setcallsign OR use the qb-target integration found below
+* Your callsign will be on the roof of your car. Only numbers are supported, not letters.
 ### qb-target Support
 * Add to your qb-target > init.lua
 ```

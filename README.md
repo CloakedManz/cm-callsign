@@ -29,6 +29,21 @@ Currently this script supports the Project Sloth Livery V2 pack & all CarLabs ca
         },
         distance = 4.0
     },
+        ["removecallsign"] = {
+        bones = {
+            "seat_dside_f",
+        },
+        options = {
+            {
+                type = "command",
+                event = "removecallsign",
+                icon = "fas fa-key",
+                label = "Remove Callsign",
+				job = "police",
+            },
+        },
+        distance = 4.0
+    },
 ```
 
 ### CarLabs Exclusive Features

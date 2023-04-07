@@ -39,6 +39,36 @@ RegisterCommand('setcallsign', function(source, args, rawCommand)
     end)
 end)
 
+RegisterCommand('removecallsign', function(source, args, rawCommand)
+    QBCore.Functions.GetPlayerData(function(PlayerData)
+        if PlayerData.job.name == "police" then
+            local playerPed = PlayerPedId()
+            local vehicle
+
+            if Config.UseQBTarget == true then
+                vehicle = QBCore.Functions.GetClosestVehicle()
+            else
+                vehicle = GetVehiclePedIsIn(playerPed, false)
+            end
+
+                SetVehicleModKit(vehicle, 0)
+
+                if Config.ProjectSlothCars == true then
+                    SetVehicleMod(vehicle, 28, -1, false)
+                    SetVehicleMod(vehicle, 29, -1, false)
+                    SetVehicleMod(vehicle, 30, -1, false)
+                elseif Config.CarLabs == true then
+                    SetVehicleMod(vehicle, 42, -1, false)
+                    SetVehicleMod(vehicle, 44, -1, false)
+                    SetVehicleMod(vehicle, 45, -1, false)
+                end
+
+        else
+            QBCore.Functions.Notify('You are not allowed to use this command!', 'error', 7000)
+        end
+    end)
+end)
+
 RegisterCommand('setcallsigncolor', function(source, args, rawCommand)
     local PlayerData = QBCore.Functions.GetPlayerData()
 

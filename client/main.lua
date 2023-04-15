@@ -2,11 +2,13 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 RegisterCommand('setcallsign', function(source, args, rawCommand)
     QBCore.Functions.GetPlayerData(function(PlayerData)
-        if PlayerData.job.name == "police" then
+        if PlayerData.job.type == "leo" then
             local playerPed = PlayerPedId()
             local vehicle
 
             local callsign = PlayerData.metadata['callsign'] or 'NO CALLSIGN'
+
+            cs, _ = callsign:gsub("%D+", "")
 
             if Config.UseQBTarget == true then
                 vehicle = QBCore.Functions.GetClosestVehicle()
@@ -14,10 +16,10 @@ RegisterCommand('setcallsign', function(source, args, rawCommand)
                 vehicle = GetVehiclePedIsIn(playerPed, false)
             end
 
-            if #callsign == 3 then
-                local callsign1 = tonumber(string.sub(callsign, 1, 1))
-                local callsign2 = tonumber(string.sub(callsign, 2, 2))
-                local callsign3 = tonumber(string.sub(callsign, 3, 3))
+            if #cs == 3 then
+                local callsign1 = tonumber(string.sub(cs, 1, 1))
+                local callsign2 = tonumber(string.sub(cs, 2, 2))
+                local callsign3 = tonumber(string.sub(cs, 3, 3))
 
                 SetVehicleModKit(vehicle, 0)
 
@@ -41,7 +43,7 @@ end)
 
 RegisterCommand('removecallsign', function(source, args, rawCommand)
     QBCore.Functions.GetPlayerData(function(PlayerData)
-        if PlayerData.job.name == "police" then
+        if PlayerData.job.type == "leo" then
             local playerPed = PlayerPedId()
             local vehicle
 
@@ -72,7 +74,7 @@ end)
 RegisterCommand('setcallsigncolor', function(source, args, rawCommand)
     local PlayerData = QBCore.Functions.GetPlayerData()
 
-    if PlayerData.job.name == "police" then
+    if PlayerData.job.type == "leo" then
         local playerPed = PlayerPedId()
         local vehicle = GetVehiclePedIsIn(playerPed, false)
 
@@ -113,3 +115,28 @@ RegisterCommand('setcallsigncolor', function(source, args, rawCommand)
         end
     end
 end)
+
+local bones = {
+    'seat_dside_f'
+}
+
+exports['qb-target']:AddTargetBone(bones, { -- The bones can be a string or a table
+  options = { -- This is your options table, in this table all the options will be specified for the target to accept
+    { -- This is the first table with options, you can make as many options inside the options table as you want
+            type = "command",
+            event = "setcallsign",
+            icon = "fas fa-key",
+            label = "Set Callsign2",
+            job = {["sasp"] = 0, ["police"] = 0, ["bcso"] = 0,}
+    },
+    { -- This is the first table with options, you can make as many options inside the options table as you want
+            type = "command",
+            event = "removecallsign",
+            icon = "fas fa-key",
+            label = "Remove Callsign2",
+            job = {["sasp"] = 0, ["police"] = 0, ["bcso"] = 0,}
+    },
+
+  },
+  distance = 4, -- This is the distance for you to be at for the target to turn blue, this is in GTA units and has to be a float value
+})

@@ -11,40 +11,7 @@ Currently this script supports the Project Sloth Livery V2 pack & all CarLabs ca
 * Do /callsign NUMBERS
 * Do /setcallsign in the vehicle OR use the qb-target integration found below outside the car.
 * Your callsign will be on the roof of your car. Only numbers are supported, not letters.
-### qb-target Support
-* Add to your qb-target > init.lua
-```
-    ["callsign"] = {
-        bones = {
-            "seat_dside_f",
-        },
-        options = {
-            {
-                type = "command",
-                event = "setcallsign",
-                icon = "fas fa-key",
-                label = "Set Callsign",
-				job = "police",
-            },
-        },
-        distance = 4.0
-    },
-        ["removecallsign"] = {
-        bones = {
-            "seat_dside_f",
-        },
-        options = {
-            {
-                type = "command",
-                event = "removecallsign",
-                icon = "fas fa-key",
-                label = "Remove Callsign",
-				job = "police",
-            },
-        },
-        distance = 4.0
-    },
-```
+       
 
 ### CarLabs Exclusive Features
 
